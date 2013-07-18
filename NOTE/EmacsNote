@@ -8,6 +8,8 @@
 win7添加右键菜单的步骤：
 HKEY_CLASSES_ROOT\*\shell\Run with Emacs\command 下建一个项，内容是可执行文件，如runemacs.exe "%1"
 
+Linux/Mac转码：iconv -f gbk -t utf8 inputfile > outputfile
+
 /////////////////// 注册表项，保存为emacs.reg执行 end ///////////////
 
 C-x C-c 退出
