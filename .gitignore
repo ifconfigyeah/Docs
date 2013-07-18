@@ -1,9 +1,49 @@
-# 此为注释 – 将被 Git 忽略
-*.[oa]       # 忽略所有以 .o 或 .a 结尾的文件。一般这类对象文件和存档文件都是编译过程中出现的，我们用不着跟踪它们的版本。
-!lib.a    # 但 lib.a 除外
-/TODO     # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
-build/    # 忽略 build/ 目录下的所有文件
-#doc/*.txt # 会忽略 doc目录下所有txt文件
-!doc/server/arch.txt   # 但不包括 doc/server/arch.txt
-*~	#忽略所有~开头的文件，一般为Emacs/VIM之类的备份文件。
-*.     #忽略隐藏文件
+###############
+#    folder   #
+###############
+/TODO
+
+###############
+#  fixed file #
+###############
+.gitignore
+*.exe
+*.txt
+*.def
+*.dsp
+*.lib
+*.doc
+*.dll
+*.lnt
+*.pm
+*.xls
+*.dbg
+*.DBG
+*.o
+*.plg
+*.keep
+*.class
+
+###############
+#  temp file  #
+###############
+~*
+*.log
+*.cmm
+*.men
+*.ini
+*.fig
+*.cmp
+*.tmp
+*~
+.*    # hidden file
+
+###############
+#    script   #
+###############
+*.bat
+
+###############
+#    contain   #
+###############
+!/TODO/FIXEDLIST
