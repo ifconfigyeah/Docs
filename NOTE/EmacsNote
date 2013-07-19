@@ -40,7 +40,7 @@ C-x C-v 打开一个文件，取代当前的缓冲区
 C-x C-w 存为新文件
 C-x C-q toggle只读模式或读写模式
 C-x ESC RSC     执行历史命令 M-p选择上一条，M-n选择下一条
-F3 C-y F4 C-u 99 F4   yank100便的方法
+F3 C-y F4 C-u 99 F4   yank100遍的方法
 
 C-d     删除一个字符
 M-d     删除一个单词
