@@ -1,0 +1,32 @@
+************************
+	Git Note
+************************
+
+clone一个项目时候，可以通过：  git clone <address> mygrit，创建一个mygrit的目录。
+git rm <filename>是真删除，git rm --cached <filename>是假删除，或者说只删文件和git仓库的关联。
+git rm log/\*.log，根据shell扩展只会删除log目录下的log，git rm \*~，则会递归当前目录及其子目录中所有~结尾的文件。
+Git仓库文件改名用git mv <oldName> <newName>比shell下直接mv好。
+git add . 一次性添加所有更改过的文件到暂存区域
+git commit -a 可以不用git add，可以直接提交所有更改过的文件，-v包含更详细
+git log -p，p选项展开每次提交的内容差异
+git log --pretty=format:"%h, %an - %ar : %s" -20，采用自定义format方法显示提交log。
+%h     显示提交对象的简短哈希字符串
+%an    作者名字
+%ar    多久以前提交的
+%ae    作者的email
+%ad    作者修订的时间
+%cn    提交者的名字
+%s     提交说明
+-20    显示最近的20条记录
+other parameters of git log：
+--since，--after，仅显示指定时间之后的提交（1day，2years，3minutes ago，2013-07-19显示7月19日之后的提交）
+--until, --before，仅显示指定时间之前的提交。
+--author 仅显示指定作者的祥光提交
+--committer	仅仅显示指定提交者相关的提交。
+--grep		搜索提交说明中的关键字。 
+--all-match	！同时用多个条件搜索时，例如指定--author和--grep后，返回的结果是或的关系，即满足其中任意条件，若想同时满足，使用该参数。
+git log --pretty="%h - %s" -author=xyz --since="2013-05-01" --before="2013-06-01" --no-merges -- t/，查看作者是xyz，于2013年5月期间，提交的但未合并目录文件（/t目录）。
+git commit --amend，可以撤销最后一次的commit，并重新编辑提交说明，或增加需要一起提交的新文件。
+git reset HEAD <filename>，取消已经暂存的文件。
+git checkout -- <filename>，取消对文件的修改。！所有已经改动的内容讲丢失。
+
