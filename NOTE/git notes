@@ -2,7 +2,7 @@
 	Git Note
 ************************
 
-clone一个项目时候，可以通过：  git clone <address> mygrit，创建一个mygrit的目录。
+clone一个项目时候，可以通过：  git clone <url> mygrit，创建一个mygrit的目录。
 git rm <filename>是真删除，git rm --cached <filename>是假删除，或者说只删文件和git仓库的关联。
 git rm log/\*.log，根据shell扩展只会删除log目录下的log，git rm \*~，则会递归当前目录及其子目录中所有~结尾的文件。
 Git仓库文件改名用git mv <oldName> <newName>比shell下直接mv好。
@@ -28,5 +28,16 @@ other parameters of git log：
 git log --pretty="%h - %s" -author=xyz --since="2013-05-01" --before="2013-06-01" --no-merges -- t/，查看作者是xyz，于2013年5月期间，提交的但未合并目录文件（/t目录）。
 git commit --amend，可以撤销最后一次的commit，并重新编辑提交说明，或增加需要一起提交的新文件。
 git reset HEAD <filename>，取消已经暂存的文件。
-git checkout -- <filename>，取消对文件的修改。！所有已经改动的内容讲丢失。
+git checkout -- <filename>，取消对文件的修改。！所有已经改动的内容将丢失，因为未提交。
+git remote -v 查看当前远程仓库，-v = -verbose
+git remote add <shortname> <url>，添加一个远程仓库。
+git fetch <remote-name>(shortname)，可以从远程仓库抓取刚才添加仓库中有（其他协作开发人员），而本地仓库没有的。（分支概念，稍后有详细）
+git remote show <remote-name>，查看某个远程仓库的详细信息。
+git remote rename <oldName> <newName>，重命名远程仓库。
+git remote rm <remote-name>，移除远程仓库。
+git tag，显示标签。
+git tag -l 'v1.4.2.*'，只查看1.4.2.*的Tag。
+git tag -a v1.0 -m "my version 1.0"，创建了一个v1.0的标签，和相应的标签说明。
+
+
 
