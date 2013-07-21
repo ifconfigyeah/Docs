@@ -2,6 +2,7 @@
 	Git Note
 ************************
 
+Git基础：
 clone一个项目时候，可以通过：  git clone <url> mygrit，创建一个mygrit的目录。
 git rm <filename>是真删除，git rm --cached <filename>是假删除，或者说只删文件和git仓库的关联。
 git rm log/\*.log，根据shell扩展只会删除log目录下的log，git rm \*~，则会递归当前目录及其子目录中所有~结尾的文件。
@@ -10,6 +11,7 @@ git add . 一次性添加所有更改过的文件到暂存区域
 git commit -a 可以不用git add，可以直接提交所有更改过的文件，-v包含更详细
 git log -p，p选项展开每次提交的内容差异
 git log --pretty=format:"%h, %an - %ar : %s" -20，采用自定义format方法显示提交log。
+git config --list，查看配置信息
 %h     显示提交对象的简短哈希字符串
 %an    作者名字
 %ar    多久以前提交的
@@ -28,16 +30,34 @@ other parameters of git log：
 git log --pretty="%h - %s" -author=xyz --since="2013-05-01" --before="2013-06-01" --no-merges -- t/，查看作者是xyz，于2013年5月期间，提交的但未合并目录文件（/t目录）。
 git commit --amend，可以撤销最后一次的commit，并重新编辑提交说明，或增加需要一起提交的新文件。
 git reset HEAD <filename>，取消已经暂存的文件。
-git checkout -- <filename>，取消对文件的修改。！所有已经改动的内容将丢失，因为未提交。
+git checkout -- <filename>，取消对文件的修改。！所有已经改动的内容将丢失。
+
+Git远程服务器：
 git remote -v 查看当前远程仓库，-v = -verbose
 git remote add <shortname> <url>，添加一个远程仓库。
-git fetch <remote-name>(shortname)，可以从远程仓库抓取刚才添加仓库中有（其他协作开发人员），而本地仓库没有的。（分支概念，稍后有详细）
+-git fetch <remote-name>(shortname)，可以从远程仓库抓取由（其他协作开发人员），而本地仓库没有的内容。（分支概念，稍后有详细）
 git remote show <remote-name>，查看某个远程仓库的详细信息。
 git remote rename <oldName> <newName>，重命名远程仓库。
 git remote rm <remote-name>，移除远程仓库。
 git tag，显示标签。
 git tag -l 'v1.4.2.*'，只查看1.4.2.*的Tag。
 git tag -a v1.0 -m "my version 1.0"，创建了一个v1.0的标签，和相应的标签说明。
+git tag v1.0，创建一个轻量级的标签。
+git show v1.0，显示此标签的信息。
+后期加注标签的方法：git log --pretty=online 显示往次提交后，使用 git tag -a v1.2 <SHA-1校验码的前几位>，在用git tag或git show v1.2就可以看到加上标签了。
+默认情况下，标签不会发送到远程服务器上，只有通过显示命令才能分享标签：
+git push origin <tag_name>，或一次提交所有标签 git push origin --tags
 
+Git自动补全：如果你用的是 Bash shell，可以试试看 Git 提供的自动补全脚本。下载 Git 的源代码，进入 contrib/completion 目录，会看到一个 git-completion.bash 文件。将此文件复制到你自己的用户主目录中（译注：按照下面的示例，还应改名加上点：cp git-completion.bash ~/.git-completion.bash），并把下面一行内容添加到你的 .bashrc 文件中：source ~/.git-completion.bash。也可以为系统上所有用户都设置默认使用此脚本。Mac 上将此脚本复制到 /opt/local/etc/bash_completion.d 目录中，Linux 上则复制到 /etc/bash_completion.d/ 目录中。这两处目录中的脚本，都会在 Bash 启动时自动加载。如果在 Windows 上安装了 msysGit，默认使用的 Git Bash 就已经配好了这个自动补全脚本，可以直接使用。在输入 Git 命令的时候可以敲两次跳格键（Tab），就会看到列出所有匹配的可用命令建议。
 
+Git别名：
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+$ git config --global alias.last 'log -1 HEAD'
 
+Git分支：
+git branch iss53	#新建一个名为iss53的分支
+git checkout iss53	#切换当前工作目录到iss53分支
+git checkout -b iss53	# 以上两条命令，可简化为一条
