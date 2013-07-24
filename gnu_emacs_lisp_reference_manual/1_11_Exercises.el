@@ -6,6 +6,6 @@ kidflower
 (setq kid (+ kid 2))
 kid    ;;;print 3
 
-(setq msg_box '(message "Hello, This is a %s."
-                        )
-      (substing "Is a Message Box ya?" 6 16))
+(setq msg_box (message "Howdy, %s!" (substring "Is this a Message Box ya?" 10 21)))
+msg_box   ;;; print "Howdy, MessageBox!"
+'msg_box  ;;; just print msg box
