@@ -1,0 +1,188 @@
+/////////////////// 注册表项，保存为emacs.reg执行 ///////////////////
+[HKEY_LOCAL_MACHINE\Software\GNU\Emacs]
+"Emacs.Background"="Black"
+"Emacs.Foreground"="Green"
+"Emacs.ScrollBars"="ON"
+"Emacs.ToolBar"="OFF"
+
+win7添加右键菜单的步骤：
+HKEY_CLASSES_ROOT\*\shell\Run with Emacs\command 下建一个项，内容是可执行文件，如runemacs.exe "%1"
+
+Linux/Mac转码：iconv -f gbk -t utf8 inputfile > outputfile
+Linux/Mac命令行模式下输入中文乱码：
+LANG=zh_CN.UTF-8
+export LANG
+
+
+/////////////////// 注册表项，保存为emacs.reg执行 end ///////////////
+
+
+C-x C-c 退出
+C-x C-s 保存
+C-x C-w 另存
+C-x u   撤销
+C-w     剪切
+M-w     复制
+C-y     粘贴
+C-x h   全选 
+C-g     终止命令   ESC ESC ESC是通用的“离开”命令, 比C-g范围更大，比如递归模式
+C-d	删除光标后的一个字符
+M-d	移除光标后的一个词(删除和移除的不同：移除可“召回”即C-y)
+<Del>	删除光标前的一个字
+M-<Del>	移除光标签的一个词
+C-k	移除光标到行尾的所有字符
+M-k	移除光标到句尾
+C-@ 	Mark Set
+C-s     向前搜索 incremental式的
+C-r     向后搜哦
+C-s C-w 以光标所在位置的字为关键字搜索 
+C-l     可以让当前行置于屏幕top middle bottom，C-u 0 C-l 可以直接移动到Top
+C-x C-v 打开一个文件，取代当前的缓冲区
+C-x C-w 存为新文件
+C-x C-q toggle只读模式或读写模式
+C-x ESC RSC     执行历史命令 M-p选择上一条，M-n选择下一条
+F3 C-y F4 C-u 99 F4   yank100遍的方法
+
+C-d     删除一个字符
+M-d     删除一个单词
+C-k     删除一行
+M-l     删除一句
+
+
+C-M-f   向前匹配括号
+C-M-b   向后匹配括号
+
+
+
+C-v 翻页
+M-v 回翻
+
+C-f 向右移动一个字符
+C-b 向左移动一个字符
+C-n 移动到下一行
+C-p 移动到上一行
+
+M-f 向右移动一个词[对中文是移动到下一个标点]
+M-b 向左移动一个词[对中文是移动到上一个标点]
+
+
+C-a 移动到行首
+C-e 移动到行尾
+M-a 移动到句首
+M-e 移动到句尾
+
+M-> 移动到最开头(类似CTRL+HOME)
+M-< 移动到最末尾
+
+前缀参数 C-u 数字 (命令)
+举例来说， C-u 8 C-f 会向前移动 8 个字符。
+
+C-x C-b 列出缓冲区
+C-x 1	离开缓冲区
+C-x b	切换缓冲区
+C-x s	保存多个缓冲区
+
+C-z 	终端模式里可以挂起Emacas，fg或者&emacs可以切换回去
+
+M-x replace-string<ret>		替换命令
+M-x goto-line<ret>		跳转命令
+M-x recover-file<ret>		可以恢复自动保存文件
+M-x fundamental-mode		可以切换到Fundamental主模式
+M-x Tex-mode                    切换到Text主模式
+
+M-x auto-fill-mode<ret>         开启/关闭 自动换行
+C-u 80 C-x f                    设置自动换行为80边界
+M-q                             手动折行
+
+多窗口：
+C-x 1           关掉当前光标停留窗口之外的其他窗口
+C-x 2           垂直分为2个窗口
+C-x 3           水平分为3个窗口
+C-x o(other)    将光标移动到下方的窗口
+C-x 4 C-f       在新窗口打开一个文件
+C-x 0           关闭本窗口
+C-x s           保存所有窗口buffer
+C-x ^           纵向扩大窗口
+C-x }           横向扩大窗口X
+
+
+
+C-M-v           滚动下方的窗口
+C-M-S-v         回滚下方的窗口               
+
+M-!             执行SHELL命令
+M-1 M-!         执行SHELL命令，并且输出插入到光标位置，不打开新buffer
+M-x shell       当前buffer切换到shell  //TODO:找到回来的方法
+
+缓冲操作:
+C-x C-b         打开缓冲区
+d or k          标记为删除
+~               标记为未修改状态
+%               标记为只读状态
+s               保存缓冲
+u               取消标记
+x               执行标记的操作
+f               在当前窗口打开该缓冲区
+o               在其他窗口打开该缓冲区
+
+
+目录操作:
+C-x d           打开目录模式
+s               toogle 日期/文件名排序显示
+v               阅读光标所在的文件(在当前的缓冲区，段时间看看用!更好，比如调用
+                linux/mac下的cat命令，或者windows下的type命令。
+q               退出阅读的文件，上面的解释为多余且不一定正确，v配合q更好用
+                再次按q还能退出目录，回到之前正在编辑的buffer
+d               标记为删除
+x               执行标记
+D               马上删除当前文件
+C               拷贝当前文件
+R               重命名当前文件
++               新建文件夹
+Z               压缩文件
+!               对光标所在的文件执行SHELL命令
+g               刷新
+i               在当前缓冲区的末尾插入子目录内容
+u               取消标记
+t               反向标记文件
+%-m             正则标记
+
+
+
+程序编译：
+M-x compile     执行编译操作
+M-x gdb         GDB排错
+
+
+
+UPDATE 2013/7/25:
+M-{		后移一段
+M-}		前移一段
+goto-char	;bound a key
+ESC n		也可以重复执行n次 命令
+C-u n		更好用,如果不带n参数,会执行4次,还可以C-u C-u 命令,执行16次,C-u C-u C-u可以64次,最大4次可以执行256次.
+C-x ]		光标前移一页
+C-x [		光标后移一页
+M-d 		删除一个单词
+M-h (ESC-h)	快速标记当前段落
+C-x h		标记整个buffer,全选(makr-whole-buffer)
+C-x C-p		可以实现相同的功能
+yank的时候.除了第一次C-y,后面可以继续用M-y恢复前一次的删除.
+默认最多可以回退30次,通过m-x set-variable <ret> new-value <ret>可以自定义.
+M-q	        重新排版当前段落,fill-paragraph
+C-t		交换前后两个字符,光标放在需要交换的第二个字符上.(transpose-chars)
+M-t		交换前后两个单词,光标放在需要交换的两个单词之间.(trnaspose-words)
+C-x C-t		交换上下两行,光标放在第二行的任意位置上.(transpose-lines)
+    		(transpose-sentences,transpose-paragraph)默认没有绑定
+M-c	capitalize-word		当前字母大写	
+M-u	upcase-words		当前单词全部转为大写
+M-l	lowercase-word		当前单词全部转为小写
+INSERT		进入改写模式,buffer栏会在主模式后出现Ovwrt字样,改写模式是一种副模式
+如果键盘上没有INSERT键或不起作用,可以用M-x overwrite-mode <ret>,或利用emacs的自动
+补足功能,M-x ov <ret>进入改写副模式,退出改写模式,在输入一遍即可,他是toggle的.
+C-x u 移动一下光标 C-x u		是撤销的撤销
+M-x revert-buffer <ret>		撤销上次存盘之后的所有修改
+
+
+
+
