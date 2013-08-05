@@ -4,10 +4,10 @@ import sys
 
 soundFile = 'sound.wav'
 not_executed = 1
-version = '0.1 beta'
+version = '0.2 beta'
 playHour = 0
 playMin  = 0
-interval = 1              # 默认1小时的间隔时间
+interval = 1              # 默认1小时后闹铃
 
 def soundStart():
     if sys.platform[:5] == 'linux':
