@@ -3,41 +3,27 @@
 import time
 import sys
 
+# a '.wav' file u want to play
+soundFilePath  = 'C:\\Users\\asus\\Music\\01.Nocturnes No. 1 in B flat minor Op. 9 No. 1.wav'   
 
-soundFile = 'TODO'    # 
+# Sounds for 120 seconds
+longOfAlarm = 120       
 
 
-# NOT NEED TO CHANGE
+
+# THE FOLLOWING PARAMETERS SHOULD NOT MODIFY
 VERSION  = 1.0
+TIP      = True
 PLAYHOUR = 0
 PLAYMIN  = 0
 
-
+# END
 
 
 def __init__(self):
     # Initialization
-    checkPlatform()
+    pass
 
-
-def checkPlatform(self):
-    # make sure support current OS
-    pf = sys.platform
-    if pf == 'win32':
-        import winsound
-        # use 'winsound' lib to play arlam music on windows
-        return pf
-    elif pf == 'linux':
-        import os
-        # linux may used 'os' lib to play
-        return
-    elif pf == 'drawin':
-        print 'Mac OS X is not supported in current VERSION', VERSION
-    else:
-        print 'What operating system are you used?'
-
-    sys.exit()
-        
 
 def echoAlarm():
     print 'Your Alarm Time is', PLAYHOUR, ':', PLAYMIN
@@ -88,6 +74,32 @@ def clacAndSetAlarmTime(tType, tTime):
 
         echoAlarm()
 
+
+def playSound():
+    # make sure support current OS
+    pf = sys.platform
+    if pf == 'win32':
+        import winsound
+        # use 'winsound' lib to play arlam music on windows
+        winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
+        time.sleep(longOfAlarm)
+        sys.exit()
+
+    elif pf == 'linux':
+        import os
+        os.popen2('aplay -q' + soundFile)
+        # linux may used 'os' lib to play
+        time.sleep(longOfAlarm)
+        sys.exit()
+
+    elif pf == 'drawin':
+        print 'Mac OS X is not supported in current version', VERSION  #mpg123
+    else:
+        print 'What operating system are you used?'
+
+    sys.exit()
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print 'No action specified.'
@@ -120,6 +132,12 @@ How To Use (One argument limited):
     else:
         print 'Unknow option.'
         sys.exit()
+
+    while(TIP):
+        dt = list(time.localtime())
+        if dt[3] == PLAYHOUR and dt[4] == PLAYMIN:
+            print 'Hey buddy, Let\'s have a rest!'
+            playSound()
   
     
 
