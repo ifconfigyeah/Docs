@@ -4,7 +4,7 @@ import time
 import sys
 
 # a '.wav' file u want to play
-soundFilePath  = 'C:\\Users\\asus\\Music\\01.Nocturnes No. 1 in B flat minor Op. 9 No. 1.wav'   
+soundFilePath  = 'alarm.wav'   
 
 # Sounds for 120 seconds
 longOfAlarm = 120       
@@ -27,6 +27,31 @@ def __init__(self):
 
 def echoAlarm():
     print 'Your Alarm Time is', PLAYHOUR, ':', PLAYMIN
+
+
+def playSound():
+    # make sure support current OS
+    pf = sys.platform
+    if pf == 'win32':
+        import winsound
+        # use 'winsound' lib to play arlam music on windows
+        winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
+        time.sleep(longOfAlarm)
+        sys.exit()
+
+    elif pf == 'linux':
+        import os
+        os.popen2('aplay -q' + soundFile)
+        # linux may used 'os' lib to play
+        time.sleep(longOfAlarm)
+        sys.exit()
+
+    elif pf == 'drawin':
+        print 'Mac OS X is not supported in current version', VERSION  #mpg123
+    else:
+        print 'What operating system are you used?'
+
+    sys.exit()
 
 
 def clacAndSetAlarmTime(tType, tTime):
@@ -75,31 +100,6 @@ def clacAndSetAlarmTime(tType, tTime):
         echoAlarm()
 
 
-def playSound():
-    # make sure support current OS
-    pf = sys.platform
-    if pf == 'win32':
-        import winsound
-        # use 'winsound' lib to play arlam music on windows
-        winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
-        time.sleep(longOfAlarm)
-        sys.exit()
-
-    elif pf == 'linux':
-        import os
-        os.popen2('aplay -q' + soundFile)
-        # linux may used 'os' lib to play
-        time.sleep(longOfAlarm)
-        sys.exit()
-
-    elif pf == 'drawin':
-        print 'Mac OS X is not supported in current version', VERSION  #mpg123
-    else:
-        print 'What operating system are you used?'
-
-    sys.exit()
-
-
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print 'No action specified.'
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 This program will play a '.wav' file within the specified time.
 The following arguments can be used.
 Options include:
-  --VERSION : Prints the VERSION number
+  --version : Prints the version number
   --help    : Display this help
 
 How To Use (One argument limited):
@@ -127,6 +127,7 @@ How To Use (One argument limited):
   alarm.py -m 45     Alarm in 45 minutes later
   alarm.py -d 15:46  Timetables depend on 24H
   '''
+            sys.exit()
         elif (option == 'h' or option == 'm' or option == 'd') and len(sys.argv[2]) != 0:
             clacAndSetAlarmTime(option, sys.argv[2])
     else:
