@@ -12,7 +12,7 @@ longOfAlarm = 120
 
 
 # THE FOLLOWING PARAMETERS SHOULD NOT MODIFY
-VERSION  = 1.0
+VERSION  = 1.0 beta
 TIP      = True
 PLAYHOUR = 0
 PLAYMIN  = 0
@@ -24,10 +24,8 @@ def __init__(self):
     # Initialization
     pass
 
-
 def echoAlarm():
     print 'Your Alarm Time is', PLAYHOUR, ':', PLAYMIN
-
 
 def playSound():
     # make sure support current OS
@@ -38,24 +36,19 @@ def playSound():
         winsound.PlaySound(soundFilePath, winsound.SND_ASYNC)
         time.sleep(longOfAlarm)
         sys.exit()
-
     elif pf == 'linux':
         import os
         os.popen2('aplay -q' + soundFile)
         # linux may used 'os' lib to play
         time.sleep(longOfAlarm)
         sys.exit()
-
     elif pf == 'drawin':
         print 'Mac OS X is not supported in current version', VERSION  #mpg123
     else:
         print 'What operating system are you used?'
-
     sys.exit()
 
-
 def clacAndSetAlarmTime(tType, tTime):
-
     global PLAYHOUR, PLAYMIN
     curHour = list(time.localtime())[3]
     curMin  = list(time.localtime())[4]
@@ -71,7 +64,6 @@ def clacAndSetAlarmTime(tType, tTime):
             if PLAYHOUR == 24: PLAYHOUR = 0
             if PLAYHOUR > 24: PLAYHOUR = PLAYHOUR - 24
         echoAlarm()
-
     elif tType == 'm':
         tTime   = int(tTime)
         if not 0 < tTime <=59:
@@ -87,7 +79,6 @@ def clacAndSetAlarmTime(tType, tTime):
                 PLAYMIN = PLAYMIN - 60
                 PLAYHOUR = PLAYHOUR + 1
         echoAlarm()
-
     else:
         PLAYHOUR, PLAYMIN = tTime.split(':')
         PLAYHOUR = int(PLAYHOUR)
@@ -98,7 +89,6 @@ def clacAndSetAlarmTime(tType, tTime):
             sys.exit()
 
         echoAlarm()
-
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
