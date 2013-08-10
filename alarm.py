@@ -4,8 +4,7 @@ import time
 import sys
 
 
-soundFile = 'TODO'    # 
-
+soundFile = 'TODO'    #
 
 # NOT NEED TO CHANGE
 VERSION  = 1.0
@@ -37,7 +36,7 @@ def checkPlatform(self):
         print 'What operating system are you used?'
 
     sys.exit()
-        
+
 
 def echoAlarm():
     print 'Your Alarm Time is', PLAYHOUR, ':', PLAYMIN
@@ -102,7 +101,7 @@ if __name__ == '__main__':
 This program will play a '.wav' file within the specified time.
 The following arguments can be used.
 Options include:
-  --VERSION : Prints the VERSION number
+  --version : Prints the VERSION number
   --help    : Display this help
 
 How To Use (One argument limited):
