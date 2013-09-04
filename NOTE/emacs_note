@@ -13,8 +13,10 @@ Linux/Mac命令行模式下输入中文乱码：
 LANG=zh_CN.UTF-8
 export LANG
 
-
 /////////////////// 注册表项，保存为emacs.reg执行 end ///////////////
+
+
+Emacs笔记, 随时更新, 只记录我看到且有用的.
 
 
 C-x C-c 退出
@@ -31,26 +33,32 @@ M-d	移除光标后的一个词(删除和移除的不同：移除可“召回”
 <Del>	删除光标前的一个字
 M-<Del>	移除光标签的一个词
 C-k	移除光标到行尾的所有字符
-M-k	移除光标到句尾
+M-k	光标删到段尾
 C-@ 	Mark Set
 C-s     向前搜索 incremental式的
 C-r     向后搜哦
 C-s C-w 以光标所在位置的字为关键字搜索 
-C-l     可以让当前行置于屏幕top middle bottom，C-u 0 C-l 可以直接移动到Top
-C-x C-v 打开一个文件，取代当前的缓冲区
-C-x C-w 存为新文件
+C-l     可以让当前行置于屏幕top middle等位置，C-u 0 C-l 可以直接移动到Top
+C-x C-v 打开一个文件，取代当前的缓冲区,Emacs的状态栏会出现U\%%标识 U\**编写中,保存后U\--
 C-x C-q toggle只读模式或读写模式
 C-x ESC RSC     执行历史命令 M-p选择上一条，M-n选择下一条
 F3 C-y F4 C-u 99 F4   yank100遍的方法
+解释:F3可以开始定义一个宏,c-y为宏执行的内容,F4结束宏定义.后面使用c-u批量执行99次F4的宏.关键之处就在于直接C-u 100 C-y并不能粘贴或召回100遍
+
 
 C-d     删除一个字符
 M-d     删除一个单词
-C-k     删除一行
-M-l     删除一句
+c-k     删除一行
 
 
-C-M-f   向前匹配括号
-C-M-b   向后匹配括号
+c-m-f   向前匹配括号(向前匹配时,光标停在前括号上)
+C-M-b   向后匹配括号(往回匹配括号时,光标停在后括号,右面的一个光标上才能正常匹配)
+
+public static void main(string args[])
+{
+       System.out.print("Hello,World");
+}
+
 
 
 
@@ -61,6 +69,8 @@ C-f 向右移动一个字符
 C-b 向左移动一个字符
 C-n 移动到下一行
 C-p 移动到上一行
+M-{		后移一段
+M-}		前移一段
 
 M-f 向右移动一个词[对中文是移动到下一个标点]
 M-b 向左移动一个词[对中文是移动到上一个标点]
@@ -77,7 +87,7 @@ M-< 移动到最末尾
 前缀参数 C-u 数字 (命令)
 举例来说， C-u 8 C-f 会向前移动 8 个字符。
 
-C-x C-b 列出缓冲区
+C-x C-b 列出缓冲区(会在一个新的buffer/tab里打开,C-x 1 返回当前buffer)
 C-x 1	离开缓冲区
 C-x b	切换缓冲区
 C-x s	保存多个缓冲区
@@ -102,17 +112,19 @@ C-x o(other)    将光标移动到下方的窗口
 C-x 4 C-f       在新窗口打开一个文件
 C-x 0           关闭本窗口
 C-x s           保存所有窗口buffer
-C-x ^           纵向扩大窗口
-C-x }           横向扩大窗口X
-
+C-x ^           纵向扩大窗口 C-x 3水平分割后有用 !root windows can not resize
+C-x }           横向扩大窗口 C-x 2有用,root windows不能扩大
+扩大窗口同样支持C-u模式,比如C-u C-u C-x ^ 可以以8行的高度扩高窗口
+C-x +		让窗口保持同样大小
 
 
 C-M-v           滚动下方的窗口
 C-M-S-v         回滚下方的窗口               
 
 M-!             执行SHELL命令
-M-1 M-!         执行SHELL命令，并且输出插入到光标位置，不打开新buffer
+M-1 M-!         执行SHELL命令，并且输出插入到光标位置(将shell的结果写到当前光标位置)，不打开新buffer
 M-x shell       当前buffer切换到shell  //TODO:找到回来的方法
+
 
 缓冲操作:
 C-x C-b         打开缓冲区
@@ -156,8 +168,7 @@ M-x gdb         GDB排错
 
 
 UPDATE 2013/7/25:
-M-{		后移一段
-M-}		前移一段
+
 goto-char	;bound a key
 ESC n		也可以重复执行n次 命令
 C-u n		更好用,如果不带n参数,会执行4次,还可以C-u C-u 命令,执行16次,C-u C-u C-u可以64次,最大4次可以执行256次.
@@ -171,7 +182,7 @@ yank的时候.除了第一次C-y,后面可以继续用M-y恢复前一次的删�
 默认最多可以回退30次,通过m-x set-variable <ret> new-value <ret>可以自定义.
 M-q	        重新排版当前段落,fill-paragraph
 C-t		交换前后两个字符,光标放在需要交换的第二个字符上.(transpose-chars)
-M-t		交换前后两个单词,光标放在需要交换的两个单词之间.(trnaspose-words)
+M-t		交换前后两个单词,光标放在需要交换的第一个单词上,或两个单词之间.(trnaspose-words)
 C-x C-t		交换上下两行,光标放在第二行的任意位置上.(transpose-lines)
     		(transpose-sentences,transpose-paragraph)默认没有绑定
 M-c	capitalize-word		当前字母大写	
@@ -184,5 +195,79 @@ C-x u 移动一下光标 C-x u		是撤销的撤销
 M-x revert-buffer <ret>		撤销上次存盘之后的所有修改
 
 
+
+P101开始:
+
+自动定义简写简写:
+M-x abbrev-mode <rtn>   进入单词简写模式,Abbrev将出现在emacs状态栏
+输入简写词,例如fi后,按下C-x a i g(add-inverse-global命令的意思,a i l为局部local)组合键,emcas将提示输入扩展短语,输入For your Information,然后回车.以后输入完fi后加上一个空格或标点符号,emacs就会自动把fi扩展为For your Information.
+
+删除简写模式:
+M-x edit-abbrevs <rtn> 会打开一个文件,使用C-k删掉对应的简写行(不要擅自添加或修改该文件)
+
+查看当前简写列表:
+M-x list-abbrevs <rtn>
+
+永久性定义简写方法:
+把下面语句条件到.emacs
+(setq-default abbrev-mode t)
+(read-abbrev-file "~/.emacs.d/abbrev_defs")
+(setq save-abbrevs t)
+然后在用上面的方法自定义我们的简介,最后M-x write-abbrev-file <rtn>输入~/.emacs.d/abbrev_defs保存文件.
+
+本次编辑工作中禁用简写词汇:
+M-x kill-all-abbrevs <rtn> 或者 退出Abbrevs模式M-x abbrev-mode <rtn> 
+
+C-x k 我不抽烟的,谢谢,删除缓冲区(kill-current-buffer)
+M-x kill-some-buffers,删除所有
+
+***********日历***********
+
+显示日历:
+M-x calendar
+设置日历星期一开始:
+M-x set-variable calendar-week-start-day <rtn> 1 <rtn>
+如果希望每次都生效(从星期一开始):
+(setq calendar-week-start-day 1)
+如果希望每次启动emacs都看到日历:
+(calendar)
+
+日历里的移动:
+除了C-fbnp之外,M-}和M-{以月份为单位前后移动,C-x ]和C-x [以年为单位前后移动,C-v和M-v前后卷3个月
+直接跳到一个具体的日期(比如查看生日的星期):g d,然后输入年,月份名,日,然后就会移动到选定的日期.
+
+日历里的节日:
+查看当前页面显示的3个月,有哪些节日:a 但是这个显示的是西方的节日.
+简单的方式查看节日:进入calcendar后,按x,Emacs即会用特殊的记号标注出是节日的日期,按u可以取消特殊显示,移动到一个具体的节日日期上,按h可以查看holidays描述.
+
+Emacs还能告知日出,日落时间和月相.还能查看其他种类的日历,比如玛雅历,法国革命里,伊斯兰历和犹太历..
+
+
+***********日记&安排***********
+Emacs的日历和日记可以配合的很好.
+进入Calendar模式,使用i d(insert-diary-entry)来创建一个日记.
+或者g d跳转到一个未来特殊的日子,然后使用i d插入新日记.
+
+多行的日记或行程安排:如果一篇日记超过了一行,从第二行开始后的每一行头,加入一个小空格,Emacs会识别为同一篇日记.
+
+周记和年记:如果日记或schedule,是每个固定的星期触发,比如星期六打电话回家.那么可以进入使用i w(insert weekly)插入一个周记.今天的每个周六都包含了.同样的,以年为周期,i y(insert yearly),比如将每一年的某月某日,设定为生日.
+
+循环记:比如3个月给汽车换一次机油和三滤,先移动到上一次更换机油的日子,然后i c(insert cyclic),然后输入多少天重复一次,比如90即可. 最终生成的diary: %%(diary-cyclic 90 9 1 2013) change the oil,这个日记的意思是从2013年的9月1号开始,每隔90天更换一次机油.
+
+日期段记:比如9月19号到9月21号中秋节去火星玩,先移动9月19号放假开始,然后C-@或C-SPACE开始标注,然后c-f往前移动到9月21号上,接着输入i b,Emacs就会自动生成一条记录,你可以在后面接上事项说明,最终生成的看起来就是这样: %%(diary-block 9 19 2013 9 21 2013) Trip to Mars
+
+领工资记:比如提醒你每月的15号要去查看工资到了没,咋办?简单,i m搞定.结果是这样的: * 15 发工资了,大家速度查账啊
+
+其实本质上Diary文件和其他都一样,就是按照某种特殊的格式来记录的文本,只要记住以后,几乎可以不用打开calendar以及使用相关命令,直接编辑diary文件即可.最后, 在说一点其他的写法:
+
+Oct 5 My Birthday 
+10/5 My Birthday
+上面两个是一样的,也就是每年的10月5号提醒.(注意,如果带了年,比如: Oct 5 1990 My Birthday ,你将会发现在未来收不到任何生日提醒)
+
+每个月周三和女友去看电影,我们知道可以这样做: Wednesday Go to the cinema with GF, 周六打电话回家: Saturday Call back home, 那么如果不想在Calendar的每一个星期六上都出现几号,怎么办? 这样做: &Saturday Call.. 前面加一个&意思是不要让Emacs在日历上把该条目显示出来, 因为打电话是经常要做不会忘记的事,而你同时想保持日历的清洁(对于某些癖好者来说),开个玩笑,有时我们只是想让日历保持清楚,提醒我们最重要的事,不是吗?
+
+(diary)放进.emacs,可以启动的时候加载日记.
+这样,某天你忘记生日的时候,当你打开Emacs时候,他就会提醒你.
+在Calendar里按m,则可以特殊标记出所有日记记录.按u,取消特殊标志(记住x是显示holidays,m是日记和行程安排,u是取消)
 
 
