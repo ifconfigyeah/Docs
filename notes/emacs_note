@@ -271,3 +271,33 @@ Oct 5 My Birthday
 在Calendar里按m,则可以特殊标记出所有日记记录.按u,取消特殊标志(记住x是显示holidays,m是日记和行程安排,u是取消)
 
 
+****************邮件****************
+C-x m 打开*mail*, 用于发送邮件, 也可以其他地方编辑好格式和内容,复制到mail buffer.
+C-c C-c 发送
+多个邮件接收地址,用逗号隔开
+To: 地址和CC,BCC等如果跨多行,每行开头加一个空格,和上面的日记跨多行,这样emacs才能知道哪些邮件地址属于同一个发送列表.(TO 收件人/CC 抄送/BCC 密送)
+永久密送自己的方法: .emacs里添加 (setq mail-self-blind t)
+上面的这条可以用来备份邮件,但更好的做法是,添加FCC: 然后紧跟着路径和一个文件名,Emacs会自动备份该邮件到指定的文件. 永久设置FCC的方式是:(setq mail-archive-file-name "mycopies") 这样所有的邮件都会保存在主目录里名为mycopies的文件里.
+
+Emacs不支持用文件作为邮件附件的做法,但允许把某些通用文件的文本的ASCII文本插入到邮件信息里.在mail buffer的正文出C-x i,然后根据提示输入一个文件的路径即可.
+
+签名:主目录维护一个".signature"的文件,里面的内容就是你的签名,格式可以随意自定义,比如这样:
+-----------------------------------------------------------
+John Steve			Life is brief, and then-
+you die, you know?
+email: ifconfig@yeah.net	phone: (+86)186791xxxxx
+-----------------------------------------------------------
+然后使用C-c C-w组合键插入签名(测试在emacs for win下不起作用)
+
+假名:比如有一个2的邮件地址非常非常长,就像这样hellostupidihavealonglongmailaddress@h4ck3rguys.com,那么可以使用M-x define-mail-alias <rtn> stupid <rtn> hellostupidihavealonglongmailaddress@h4ck3rguys.com. 这样, 下次发送邮件的时候就可以在地址栏输入stupid用于代替那长长的邮件地址.
+这种做法的坏处是退出emacs后就消失了,当然,你可能想到了...
+是的,在.emacs里加入以下语句, just like this:
+(define-mail-alias "stupid" "hellostupidihavealonglongmailaddress@h4ck3rguys.com")
+(define-mail-alias "stupid2" "howdystupidihavealonglongmailaddress@h4ck3rguys.com")
+好吧,请忽略以上的语气...因为想起了一件让我生气的事,所以仅仅是调侃一下..快点把你朋友和同事的邮件列表加进去吧 :)
+实际上,放在.emacs里的假名优先级最高,如果为了整洁,还可以放在另外的一个单独文件,emacs还会尝试读取.mailrc文件.
+
+
+
+
+
