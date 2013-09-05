@@ -200,7 +200,7 @@ P101开始:
 
 自动定义简写简写:
 M-x abbrev-mode <rtn>   进入单词简写模式,Abbrev将出现在emacs状态栏
-输入简写词,例如fi后,按下C-x a i g(add-inverse-global命令的意思,a i l为局部local)组合键,emcas将提示输入扩展短语,输入For your Information,然后回车.以后输入完fi后加上一个空格或标点符号,emacs就会自动把fi扩展为For your Information.
+输入简写词,例如fyi后,按下C-x a i G(ADD-inverse-GLOBAL命令的意思,A i L为局部LOCAL)组合键,EMCAS将提示输入扩展短语,输入for your information,然后回车.以后输入fyi后加上一个空格或标点符号,emacs就会自动把fi扩展为for your information. Emacs很聪明,如果你输入的是大写"F YI"那么你会得到For Your Information.
 
 删除简写模式:
 M-x edit-abbrevs <rtn> 会打开一个文件,使用C-k删掉对应的简写行(不要擅自添加或修改该文件)
@@ -271,7 +271,7 @@ Oct 5 My Birthday
 在Calendar里按m,则可以特殊标记出所有日记记录.按u,取消特殊标志(记住x是显示holidays,m是日记和行程安排,u是取消)
 
 
-****************邮件****************
+****************邮件之发邮件****************
 C-x m 打开*mail*, 用于发送邮件, 也可以其他地方编辑好格式和内容,复制到mail buffer.
 C-c C-c 发送
 多个邮件接收地址,用逗号隔开
@@ -298,6 +298,7 @@ email: ifconfig@yeah.net	phone: (+86)186791xxxxx
 实际上,放在.emacs里的假名优先级最高,如果为了整洁,还可以放在另外的一个单独文件,emacs还会尝试读取.mailrc文件.
 
 
+回信地址:有时候如果收不到别人的回信,有可能需要手工指定回信地址,使用Reply-to:就可以了,或使用mail-reply-TO.永久性的指定一个回信地址可以(setq mail-default-reply-to "www@yyy.com").注意我没测试这条命令.所以,如果他不能正常工作,尝试(setq mail-reply-to "www@yyy.com")
 
 
-
+*********************邮件之收邮件********************
