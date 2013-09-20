@@ -117,7 +117,7 @@ C-x }           横向扩大窗口 C-x 2有用,root windows不能扩大
 扩大窗口同样支持C-u模式,比如C-u C-u C-x ^ 可以以8行的高度扩高窗口
 C-x +		让窗口保持同样大小
 
-
+ 
 C-M-v           滚动下方的窗口
 C-M-S-v         回滚下方的窗口               
 
@@ -215,11 +215,19 @@ M-x list-abbrevs <rtn>
 (setq save-abbrevs t)
 然后在用上面的方法自定义我们的简介,最后M-x write-abbrev-file <rtn>输入~/.emacs.d/abbrev_defs保存文件.
 
-本次编辑工作中禁用简写词汇:
+本次编辑工作中暂时禁用简写词汇的方法:
 M-x kill-all-abbrevs <rtn> 或者 退出Abbrevs模式M-x abbrev-mode <rtn> 
 
 C-x k 我不抽烟的,谢谢,删除缓冲区(kill-current-buffer)
 M-x kill-some-buffers,删除所有
+
+
+多行注释，矩形的操作
+从第一行mark到最后一行行首，C-x r t，输入不同语言的注释符号
+从第一行mark到最后一行注释符后一个位置，C-x r k，删除注释
+
+emacs的“跨多行”，比如搜索的时候跨多行，自定义简写的时候也要跨行都可以用。输入完上一行后按c-q c-j就能输下一行了。
+
 
 ***********日历***********
 
