@@ -26,7 +26,7 @@ C-x u   撤销
 C-w     剪切
 M-w     复制
 C-y     粘贴
-C-x h   全选
+C-x h   全选 
 C-g     终止命令   ESC ESC ESC是通用的“离开”命令, 比C-g范围更大，比如递归模式
 C-d	删除光标后的一个字符
 M-d	移除光标后的一个词(删除和移除的不同：移除可“召回”即C-y)
@@ -37,7 +37,7 @@ M-k	光标删到段尾
 C-@ 	Mark Set
 C-s     向前搜索 incremental式的
 C-r     向后搜哦
-C-s C-w 以光标所在位置的字为关键字搜索
+C-s C-w 以光标所在位置的字为关键字搜索 
 C-l     可以让当前行置于屏幕top middle等位置，C-u 0 C-l 可以直接移动到Top
 C-x C-v 打开一个文件，取代当前的缓冲区,Emacs的状态栏会出现U\%%标识 U\**编写中,保存后U\--
 C-x C-q toggle只读模式或读写模式
@@ -117,9 +117,9 @@ C-x }           横向扩大窗口 C-x 2有用,root windows不能扩大
 扩大窗口同样支持C-u模式,比如C-u C-u C-x ^ 可以以8行的高度扩高窗口
 C-x +		让窗口保持同样大小
 
-
+ 
 C-M-v           滚动下方的窗口
-C-M-S-v         回滚下方的窗口
+C-M-S-v         回滚下方的窗口               
 
 M-!             执行SHELL命令
 M-1 M-!         执行SHELL命令，并且输出插入到光标位置(将shell的结果写到当前光标位置)，不打开新buffer
@@ -185,7 +185,7 @@ C-t		交换前后两个字符,光标放在需要交换的第二个字符上.(tra
 M-t		交换前后两个单词,光标放在需要交换的第一个单词上,或两个单词之间.(trnaspose-words)
 C-x C-t		交换上下两行,光标放在第二行的任意位置上.(transpose-lines)
     		(transpose-sentences,transpose-paragraph)默认没有绑定
-M-c	capitalize-word		当前字母大写
+M-c	capitalize-word		当前字母大写	
 M-u	upcase-words		当前单词全部转为大写
 M-l	lowercase-word		当前单词全部转为小写
 INSERT		进入改写模式,buffer栏会在主模式后出现Ovwrt字样,改写模式是一种副模式
@@ -193,19 +193,6 @@ INSERT		进入改写模式,buffer栏会在主模式后出现Ovwrt字样,改写�
 补足功能,M-x ov <ret>进入改写副模式,退出改写模式,在输入一遍即可,他是toggle的.
 C-x u 移动一下光标 C-x u		是撤销的撤销
 M-x revert-buffer <ret>		撤销上次存盘之后的所有修改
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -228,14 +215,18 @@ M-x list-abbrevs <rtn>
 (setq save-abbrevs t)
 然后在用上面的方法自定义我们的简介,最后M-x write-abbrev-file <rtn>输入~/.emacs.d/abbrev_defs保存文件.
 
-本次编辑工作中禁用简写词汇:
-M-x kill-all-abbrevs <rtn> 或者 退出Abbrevs模式M-x abbrev-mode <rtn>
+本次编辑工作中暂时禁用简写词汇的方法:
+M-x kill-all-abbrevs <rtn> 或者 退出Abbrevs模式M-x abbrev-mode <rtn> 
 
-C-x k 删除缓冲区(kill-current-buffer)
+C-x k 我不抽烟的,谢谢,删除缓冲区(kill-current-buffer)
 M-x kill-some-buffers,删除所有
 
 
+多行注释，矩形的操作
+从第一行mark到最后一行行首，C-x r t，输入不同语言的注释符号
+从第一行mark到最后一行注释符后一个位置，C-x r k，删除注释
 
+emacs的“跨多行”，比如搜索的时候跨多行，自定义简写的时候也要跨行都可以用。输入完上一行后按c-q c-j就能输下一行了。
 
 
 ***********日历***********
@@ -277,7 +268,7 @@ Emacs的日历和日记可以配合的很好.
 
 其实本质上Diary文件和其他都一样,就是按照某种特殊的格式来记录的文本,只要记住以后,几乎可以不用打开calendar以及使用相关命令,直接编辑diary文件即可.最后, 在说一点其他的写法:
 
-Oct 5 My Birthday
+Oct 5 My Birthday 
 10/5 My Birthday
 上面两个是一样的,也就是每年的10月5号提醒.(注意,如果带了年,比如: Oct 5 1990 My Birthday ,你将会发现在未来收不到任何生日提醒)
 
@@ -286,34 +277,6 @@ Oct 5 My Birthday
 (diary)放进.emacs,可以启动的时候加载日记.
 这样,某天你忘记生日的时候,当你打开Emacs时候,他就会提醒你.
 在Calendar里按m,则可以特殊标记出所有日记记录.按u,取消特殊标志(记住x是显示holidays,m是日记和行程安排,u是取消)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ****************邮件之发邮件****************
@@ -346,172 +309,4 @@ email: ifconfig@yeah.net	phone: (+86)186791xxxxx
 回信地址:有时候如果收不到别人的回信,有可能需要手工指定回信地址,使用Reply-to:就可以了,或使用mail-reply-TO.永久性的指定一个回信地址可以(setq mail-default-reply-to "www@yyy.com").注意我没测试这条命令.所以,如果他不能正常工作,尝试(setq mail-reply-to "www@yyy.com")
 
 
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-FOR SOME REASON, I DECIDE TO INDEFINITE STOP OTHER
-EMACS MODULES&TIPS THAT HAS NO RELATION TO EDITING
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-#上面停止了邮件及Emacs上网和浏览器的模块,因为个人精力有限,重新聚焦Emacs的强大编辑功能
-
-批量缩进的方法:
-移动到第一行,手动tab一下
-从第二行开始到文本结束,设置mark(C-@)
-按下"C-M-\"组合键就可以批量缩进了,命令是M-x indent-region
-
-实现分拆效果:
---先看看效果--
-Hey,
-    Dennie,
-	   I'm really do not care what you are talking about.
-
-基本上就是这样了,移动要拆分的地方直接"C-M-o",命令是split-line
-
-文本的居中:
---先看看效果--
-				  Hello,World
-移动到文本行任意地方,M-o M-s搞定,命令是center-line,还可以自己看,有center-paragraph(M-o M-S),
-以及区域区中center-region的功能(光就知道要用到mark了).
-
-
-矩形编辑:
-看个例子先
-Name    Price
-a	1
-b	2
-c	3
-
-变成这样
-
-Price	Name
-1	a
-2	b
-3	c
-
-来看看这个矩形操作是如何先实现的:
-1.在Name的N处设定一个mark
-2.mark的结尾光标放在Price的第三列3上面,这样从Name的N到Price的3斜对角线之间,mark的区域就是一个真正的矩形
-(这个操作的关键点, 就在于忽略mark时候变色的其他区域, 只关注从mark起始点和结束点之间形成的矩形)
-3.C-x r k, 命令是kill-rectangle
-4.做完上面这步后,就只剩下Price一列了,然后移动到price后tab一下,在使用下面的命令,就完成了最终效果.
-5.C-x r y, 命令是yank-rectangle
-
-在看下,如果要在Name和Price列之间加 俩空格, 已便更加美观, 就像下面这样
-
-Price	   Name
-1	   a
-2	   b
-3	   c
-
-1.首先在Name列的N处开始一个mark,mark的结束为止在Name的c右边一格(当前光标在c右边一格)
-2.C-x r o,命令是open-rectangle
-3.完成,增加了一格.同样的方法可以继续增加
-
-此外,在矩形操作中还有命令,clear-rectangle(删除对角线矩形内数据);delete-rectangle(可以处理clear-rectangle后,列与列之间多出的空格)
-
-
-命令速查表:
-Keyboard Shortcut	Command Name	     Action
-C-x r k	 		kill-rectangle	     删除一个矩形并保存
-C-x r d			delete-rectangle     删除一个矩形但不保存(后面无法yank)
-C-x r y			yank-rectangle	     在光标位置插入最后一次删除的矩形
-C-x r c			clear-rectangle	     清除矩形区域的内容,但不保存
-C-x r o			open-rectangle	     在矩形区域里插入一个空格
-
-
-Emacs的图形模式:
-
-这玩意挺有意思,也挺强大的(其他编辑器很少有提供的).惯例先来个例子
-		   _
-	       	/\| |
-	       /  \ |
-	      /	   \|
-	     /	    \       Simple style
-	    /	     \
-	   /__________\
-	   |   	      |
-	   |	      |
-	   |   |--|   |
-	   |___|  |___|
-
-呵呵,不错吧.在看看如何实现之前,我们先来说一下Emacs的"绘制方向"
-
-               c-c ^
-
-	c-c `	     c-c '
-	     \	 |   /
-	      \	 |  /
-	       \ | /
-	    	\|/
-  c-c <	 --------*---------  c-c >
-	    	/|\
-	       / | \
-	      /	 |  \
-	     /	 |   \
-      c-c /	     c-c \
-
-	      c-c .
-
-
-上面的图基本表达了我想要说明的意思,但其实上图的每两条直线之间的夹角都是45度,也就是说,他们是8个45度均等分合成的圆形.
-为什么说这个呢?因为图形模式会用到.举个简单的提示,一般情况下,我们输入都是从左向右的方向,依次进行递增,比如我们输入4个*,得到的是****
-但是一旦我们使用图形模式中特殊的方向,比如左角(c-c /),那我们在输入4个*得到的就是:
-									*
-								       *
-								      *
-								     *
-会了这个,上面的的例子"简单的房子"就很容易绘制了.
-ps:
-M-x edit-picture 进入图形模式
-C-c c-c		 退出图形模式
-
-来记一个快速的长方形画法?有可能在Email中可以用到.
-1. c-u 20 - 或 ESC 20 -
-2. c-c . ESC 5 |
-3. c-c < ESC 20 -
-c-c ^ ESC 5 |
-
---------------------|
-|		    |
-|	Hello,	    |
-|	Emacs!	    |
-|		    |
-|--------------------
-
-
-宏:
-任何时候只能有一个宏,也就是说新录制的会替代老的
-C-x (	开始录制一个宏
-C-x )	结束录制
-c-g 	有错误时可以取消宏的定义
-
-比如有一篇文章,我们希望在行与行之间增加1个字符的间距.
-abcdefghijklmnopqrstuvwxyz
-abcdefghijklmnopqrstuvwxyz
-abcdefghijklmnopqrstuvwxyz
-
-变成这样,
-
-abcdefghijklmnopqrstuvwxyz
-
-abcdefghijklmnopqrstuvwxyz
-
-abcdefghijklmnopqrstuvwxyz
-
-
-1.C-x (    开始
-2.c-e 	   移动到当前行尾
-3.c-f	   移动到下一行开始
-4.<rtn>	   用回车键插入一个空白航
-6.c-x )	   结束录制
-
-目前,在我没更改Emacs for Windows下,开始和结束录制宏的快捷键分别是F3和F4.
-
+*********************邮件之收邮件********************
