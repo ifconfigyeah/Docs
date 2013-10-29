@@ -1,4 +1,4 @@
 Docs
 ====
 
-All is just "PRIVATE" docs and notes, thx :)
+All is just "PRIVATE" doc and note, thx :)
