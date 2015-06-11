@@ -1,4 +1,4 @@
 Docs
 ====
 
-All is just "PRIVATE" doc and note, thx :)
+PRIVATE repository, not for sharing, thx!
